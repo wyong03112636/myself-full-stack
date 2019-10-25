@@ -41,6 +41,7 @@ const login = async function(req, res, next) {
   if(result){
     let Compareresult = await compare(password , result.password)
     if (Compareresult) {
+      req.session.username = username;
       res.render('succ', {
         data:JSON.stringify({
           message:'用户登录成功',
@@ -56,9 +57,37 @@ const login = async function(req, res, next) {
     })
   }
 }
+ const isLogin = async function(req, res, next) {
+  res.set('Content-Type', 'application/json;charset=utf-8')
+    if(req.session.username){
+      res.render('succ', {
+        data:JSON.stringify({
+          message:'用户已有登录权限',
+          username:req.session.username
+        })
+      })
+    }else{
+      res.render('fail', {
+        data:JSON.stringify({
+          message:'没有权限',
+        })
+      })
+    }
+}
+const logout = function(req, res, next){
+  res.set('Content-Type', 'application/json;charset=utf-8')
+  req.session = null;
+  res.render('succ', {
+    data:JSON.stringify({
+      message:'注销成功',
+    })
+  })
+}
 
 module.exports = {
     register,
     login,
-    hasSame
+    hasSame,
+    isLogin,
+    logout
 }
