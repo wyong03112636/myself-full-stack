@@ -1,2 +1,2 @@
-import './router/index';
 import './controllers/index'
+import './router/index';
