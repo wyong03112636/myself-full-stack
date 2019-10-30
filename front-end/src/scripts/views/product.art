@@ -1,41 +1,46 @@
-<div class="panel panel-default">
-                       
-  <div class="panel-heading">
-    <button type="button" class="btn btn-success" id="btn-add">+ 添加</button>
-  </div>
-  
-  <div class="panel-body">
-      <div class="table-responsive">
-          <table class="table">
-              <thead>
-                  <tr>
-                      <th>产品编号</th>
-                      <th>产品图片</th>
-                      <th>产品名称</th>
-                      <th>产品描述</th>
-                      <th>产品价格</th>
-                      <th>添加时间</th>
-                      <th>操作</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {{each list}}
-                  <tr class="info">
-                      <td>{{$index + 1}}</td>
-                      <td>Mark</td>
-                      <td>{{$value.productname}}</td>
-                      <td>{{$value.producttitle}}</td>
-                      <td>￥{{$value.productprice}}</td>
-                      <td>{{$value.createTime}}</td>
-                      <td>
-                        <button type="button" class="btn btn-primary" data-id="{{$value._id}}" id="pro-update">修改</button>
-                        <button type="button" class="btn btn-danger" data-id="{{$value._id}}" id="pro-remove">删除</button>
-                      </td>
-                  </tr>
-                  {{/each}}
-              </tbody>
-          </table>
+<div class="panel-heading">
+    {{if flag}}
+    <div class="panel-heading">
+        <button type="button" class="btn btn-success" id="btn-add">+ 添加</button>
+            <input type="text" id="search" class="form-control" style="width: 200px; float: right;">
       </div>
-  </div>
+      {{else}}
+      <div class="panel-heading">
+        <button type="button" class="btn btn-success" id="go-back">- 返回</button>
+      </div>
+      {{/if}}
 </div>
-<!--  end  Context Classes  --
+<div class="panel-body">
+   <div class="table-responsive">
+       <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+           <thead>
+               <tr class="odd gradeX">
+                <th>产品编号</th>
+                <th>产品图片</th>
+                <th>产品名称</th>
+                <th>产品描述</th>
+                <th>产品价格</th>
+                <th>添加时间</th>
+                <th>操作</th>
+               </tr>
+           </thead>
+           <tbody>
+            {{each list}}
+            <tr  class="even gradeC">
+                <td>{{$index + 1}}</td>
+                <td><img style="width: 60px; height: 60px;" src="http://localhost:4000/uploads/{{$value.productimg}}" alt=""></td>
+                <td>{{$value.productname}}</td>
+                <td>{{$value.producttitle}}</td>
+                <td>￥{{$value.productprice}}</td>
+                <td>{{$value.createTime}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-id="{{$value._id}}" id="pro-update">修改</button>
+                  <button type="button" class="btn btn-danger" data-id="{{$value._id}}" id="pro-remove">删除</button>
+                </td>
+            </tr>
+            {{/each}}
+           </tbody>
+       </table>
+   </div>
+   
+</div>

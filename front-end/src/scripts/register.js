@@ -1,25 +1,27 @@
 import registerModels from "./models/request";
 
 class Register {
-    constructor() {
-        this.bindEvent()
+  constructor() {
+    this.bindEvent();
+  }
+
+  bindEvent() {
+    $("#register").on("click", this.request);
+  }
+
+  async request() {
+    const data = $("#registerinfo").serialize();
+    const result = await registerModels.get({
+      url: "/api/users/register",
+      data,
+      type: "POST",
+    });
+    if (!result.msg) {
+      alert(result.message.message);
     }
-    bindEvent(){
-        $('#register').on('click', this.request)
+    if (result.msg) {
+      location.href = "../login.html";
     }
-    async request() {
-        let data = $('#registerinfo').serialize();
-        let result = await registerModels.get({
-            url:'/api/users/register',
-            data,
-            type:'POST'
-        })
-        if(!result.msg){
-            alert(result.message.message)
-        }
-        if(result.msg){
-            location.href = '../login.html'
-        }
-    }
+  }
 }
-new Register()
+new Register();

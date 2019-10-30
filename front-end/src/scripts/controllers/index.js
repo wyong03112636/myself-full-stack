@@ -36,6 +36,7 @@ class Index {
     $("#logout").on("click", this.logout.bind(this));
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async logout() {
     // let result = await isLoginModel.get({
     //     url:'/api/users/logout'

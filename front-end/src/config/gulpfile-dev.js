@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require("path");
 const {
   src,
@@ -9,7 +10,6 @@ const {
 const connect = require("gulp-connect");
 const sass = require("gulp-sass");
 const webpack = require("webpack-stream");
-// eslint-disable-next-line import/no-extraneous-dependencies
 const proxy = require("http-proxy-middleware");
 
 const devPath = "../../dev";
@@ -88,12 +88,12 @@ function gulpServer() {
     host: "localhost",
     livereload: true,
     middleware: () => [
-        proxy('/api', {
-          target: 'http://localhost:4000',
-          changeOrigin: true,
+      proxy("/api", {
+        target: "http://localhost:4000",
+        changeOrigin: true,
 
-        })
-      ],
+      }),
+    ],
   });
 }
 
@@ -106,4 +106,5 @@ function watchFiles() {
   watch("../assets/*", series(copyassets));
 }
 
+// eslint-disable-next-line max-len
 exports.default = series(parallel(copyhtml, copyassets, copylibs, packSCSS, packJS), parallel(gulpServer, watchFiles));

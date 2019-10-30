@@ -19,10 +19,21 @@ const findOne = async (id) => {
 const remove = async (id) => {
   return await product.findByIdAndDelete(id)
 }
+const search = async (keywords) => {
+  let reg = new RegExp(keywords, 'gi');
+  return await product.find({}).or([{
+    productname: reg
+  }, {
+    producttitle: reg
+  }, {
+    productprice: reg
+  }])
+}
 module.exports = {
   save,
   findAll,
   upData,
   findOne,
-  remove
+  remove,
+  search
 }

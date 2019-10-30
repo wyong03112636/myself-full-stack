@@ -12,11 +12,12 @@ const Users = mongoose.model("users", {
   retype: String,
 });
 const product = mongoose.model("products", {
+  productimg: String,
   productname: String,
   producttitle: String,
   productprice: String,
+  createTime: String
 });
-
 module.exports = {
   Users,
   product,

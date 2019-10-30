@@ -3,6 +3,7 @@ const moment = require('moment')
 const {
   verifyToken,
 } = require("../utils/tools")
+
 const findAll = async (req, res, next) => {
   res.set("Content-Type", "application/json; charset=utf-8");
   let result = await productModel.findAll();
@@ -19,7 +20,8 @@ const findAll = async (req, res, next) => {
       }),
     })
   }
-}
+};
+
 const isLogin = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
   let token = req.get("X-Access-Token")
@@ -35,9 +37,12 @@ const isLogin = async function (req, res, next) {
     });
   }
 };
+
 const saveData = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
   let data = req.body;
+  data.createTime = moment().format('YYYY-MM-DD HH:mm:ss')
+  data.productimg = req.filename;
   let result = await productModel.save(data);
   if (result) {
     res.render("succ", {
@@ -52,7 +57,7 @@ const saveData = async function (req, res, next) {
       }),
     });
   }
-}
+};
 
 const upData = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
@@ -73,7 +78,7 @@ const upData = async function (req, res, next) {
     });
   }
 
-}
+};
 
 const findOne = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
@@ -88,12 +93,12 @@ const findOne = async function (req, res, next) {
       data: JSON.stringify(result),
     });
   }
-}
+};
 
 const remove = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
   let id = req.body.id;
-  let result = productModel.remove(id);
+  let result = await productModel.remove(id);
   if (result) {
     res.render("succ", {
       data: JSON.stringify({
@@ -107,12 +112,35 @@ const remove = async function (req, res, next) {
       }),
     });
   }
-}
+};
+
+const search = async function (req, res, next) {
+  res.set("Content-Type", "application/json;charset=utf-8");
+  let {
+    keywords
+  } = req.body;
+  let result = await productModel.search(keywords);
+  if (result) {
+    res.render("succ", {
+      data: JSON.stringify({
+        list: result,
+      }),
+    });
+  } else {
+    res.render("fail", {
+      data: JSON.stringify({
+        list: []
+      }),
+    });
+  }
+};
+
 module.exports = {
   findAll,
   isLogin,
   saveData,
   upData,
   findOne,
-  remove
+  remove,
+  search
 }

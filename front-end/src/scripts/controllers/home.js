@@ -1,7 +1,5 @@
-import homeView from '../views/home.art';
+import homeView from "../views/home.art";
 
-export const home = (req, res, next)=>{
-    res.render(homeView());
-}
-
-
+export const home = (req, res, next) => {
+  res.render(homeView());
+};

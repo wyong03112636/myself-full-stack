@@ -31,6 +31,7 @@ const register = async function (req, res, next) {
     });
   }
 };
+
 const hasSame = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
   const {
@@ -80,6 +81,7 @@ const login = async function (req, res, next) {
     });
   }
 };
+
 const isLogin = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
   let token = req.get('X-Access-Token');
@@ -99,6 +101,7 @@ const isLogin = async function (req, res, next) {
     });
   }
 };
+
 const logout = function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
   req.session = null;
