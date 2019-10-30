@@ -1,44 +1,50 @@
-import navView from '../views/nav.art'
-import isLoginModel from '../models/request';
-const store = require('store');
+import navView from "../views/nav.art";
+import isLoginModel from "../models/request";
+
+const store = require("store");
 
 class Index {
-    constructor() {
-        this.render()
-        this.islogin = false;
-    }
-    async render() {
-        let result = await isLoginModel.get({
-            url: '/api/users/islogin'
-        })
+  constructor() {
+    this.render();
+    this.islogin = false;
+  }
 
-        if (result.msg) {
-            this.islogin = true;
-            let username = result.message.username;
-            let html = navView({
-                username,
-                islogin: this.islogin
-            });
-            $('#left-nav').html(html);
-        }
-        if (!result.msg) {
-            let html = navView();
-            $('#left-nav').html(html);
-        }
-        this.bindEvent()
+  async render() {
+    const result = await isLoginModel.get({
+      url: "/api/users/islogin",
+    });
+
+    if (result.msg) {
+      this.islogin = true;
+      const {
+        username,
+      } = result.message;
+      const html = navView({
+        username,
+        islogin: this.islogin,
+      });
+      $("#left-nav").html(html);
     }
-    bindEvent() {
-        $('#logout').on('click', this.logout.bind(this));
+    if (!result.msg) {
+      const html = navView();
+      $("#left-nav").html(html);
     }
-    async logout() {
-        // let result = await isLoginModel.get({
-        //     url:'/api/users/logout'
-        // })
-        // if(result.msg){
-        //     location.reload()
-        // }
-        store.remove('token');
-        location.reload();
-    }
+    this.bindEvent();
+  }
+
+  bindEvent() {
+    $("#logout").on("click", this.logout.bind(this));
+  }
+
+  async logout() {
+    // let result = await isLoginModel.get({
+    //     url:'/api/users/logout'
+    // })
+    // if(result.msg){
+    //     location.reload()
+    // }
+    store.remove("token");
+    location.reload();
+  }
 }
-export default new Index()
+export default new Index();

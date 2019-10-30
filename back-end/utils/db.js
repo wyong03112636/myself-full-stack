@@ -1,15 +1,23 @@
+/* eslint-disable linebreak-style */
 const mongoose = require("mongoose");
+
 mongoose.connect("mongodb://localhost:27017/myself", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const Users = mongoose.model("users", {
   username: String,
   password: String,
-  retype: String
+  retype: String,
+});
+const product = mongoose.model("products", {
+  productname: String,
+  producttitle: String,
+  productprice: String,
 });
 
 module.exports = {
-  Users
+  Users,
+  product,
 };

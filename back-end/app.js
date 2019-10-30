@@ -17,7 +17,7 @@ app.use(
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var positonRouter = require("./routes/position");
+var productRouter = require("./routes/product");
 // view engine setup
 app.engine("art", require("express-art-template"));
 app.set("view options", {
@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
-app.use("/api/position", positonRouter);
+app.use("/api/product", productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
