@@ -1,23 +1,22 @@
 const productModel = require('../models/product', );
 const moment = require('moment')
+const fs = require('fs');
+const path = require('path');
 const {
   verifyToken,
 } = require("../utils/tools")
 
 const findAll = async (req, res, next) => {
   res.set("Content-Type", "application/json; charset=utf-8");
-  let result = await productModel.findAll();
+  let pageinfo = req.query;
+  let result = await productModel.findAll(pageinfo);
   if (result) {
     res.render("succ", {
-      data: JSON.stringify({
-        list: result,
-      }),
+      data: JSON.stringify(result),
     })
   } else {
     res.render("fail", {
-      data: JSON.stringify({
-        list: [],
-      }),
+      data: JSON.stringify([]),
     })
   }
 };
@@ -62,6 +61,12 @@ const saveData = async function (req, res, next) {
 const upData = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
   let data = req.body;
+  if (req.filename === '') {
+    delete data.productimg;
+  } else {
+    data.productimg = req.filename;
+  }
+
   data.createTime = moment().format('YYYY-MM-DD HH:mm:ss')
   let result = await productModel.upData(data);
   if (result) {
@@ -97,9 +102,16 @@ const findOne = async function (req, res, next) {
 
 const remove = async function (req, res, next) {
   res.set("Content-Type", "application/json;charset=utf-8");
-  let id = req.body.id;
+  let {
+    id,
+    tempImg
+  } = req.body;
   let result = await productModel.remove(id);
   if (result) {
+    fs.unlink(path.resolve(__dirname, '../public/uploads/' + tempImg), (err) => {
+      if (err)
+        console.log(err);
+    })
     res.render("succ", {
       data: JSON.stringify({
         message: "数据删除成功",

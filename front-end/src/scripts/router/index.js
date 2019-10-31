@@ -18,9 +18,10 @@ router.route("/product", list);
 router.route("/product_add", add);
 router.route("/product_update", updata);
 router.route("/form", form);
+router.route("/product_list/:page", list);
 
 router.use((req) => {
-  const url = req.url.slice(1).split("?")[0].split("_")[0];
+  const url = req.url.slice(1).split("/")[0].split("?")[0].split("_")[0];
   $(`#main-menu li a[data-url=${url}]`).addClass("active-menu").parents("li").siblings()
     .children("a")
     .removeClass("active-menu");

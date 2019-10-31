@@ -11,7 +11,14 @@
       {{/if}}
 </div>
 <div class="panel-body">
-   <div class="table-responsive">
+    <div class="table-responsive">
+        {{ if list.length === 0}}
+       <table>
+           <th>
+               <tr>暂无数据.</tr>
+           </th>
+       </table>
+       {{else}}
        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
            <thead>
                <tr class="odd gradeX">
@@ -35,12 +42,36 @@
                 <td>{{$value.createTime}}</td>
                 <td>
                   <button type="button" class="btn btn-primary" data-id="{{$value._id}}" id="pro-update">修改</button>
-                  <button type="button" class="btn btn-danger" data-id="{{$value._id}}" id="pro-remove">删除</button>
+                  <button type="button" class="btn btn-danger" data-id="{{$value._id}}" data-img="{{$value.productimg}}" id="pro-remove">删除</button>
                 </td>
             </tr>
             {{/each}}
            </tbody>
        </table>
+       <div class="row" style="width:100%;">
+            <div class="col-sm-6" style="float: right;">
+                <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+                    <ul class="pagination" id="pagination">
+                        <li class="paginate_button previous" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                            <a href="javascript:void(0)" class="page-prev">Previous</a>
+                        </li>
+                        {{each pageCount}}
+                        {{if currentPage === $value}}
+                        <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+                        {{else}}
+                        <li class="paginate_button" aria-controls="dataTables-example" tabindex="0">
+                        {{/if}}
+                            <a href="javascript:void(0)" class="page-number">{{$index + 1}}</a>
+                        </li>
+                        {{/each}}
+                        <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                            <a href="javascript:void(0)" class="page-next">Next</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{/if}}
    </div>
    
 </div>

@@ -1,6 +1,7 @@
 const path = require('path')
 const multer = require('multer')
 const randomstring = require('randomstring')
+const fs = require('fs');
 var filename = '';
 const mimetypeMap = {
   'image/png': '.png',
@@ -27,9 +28,15 @@ const upload = multer({
 }).single('productimg')
 
 module.exports = (req, res, next) => {
-  console.log(filename)
   upload(req, res, (err) => {
-    req.filename = filename
+    if (filename) {
+      fs.unlink(path.resolve(__dirname, '../public/uploads/' + req.body.tempImg), (err) => {
+        if (err)
+          console.log(err.message);
+      })
+    }
+    req.filename = filename;
+    filename = ''; //重置filename，不然下次提交会沿用上次的图片
     next()
   })
 }

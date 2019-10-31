@@ -8,9 +8,9 @@ const upload = require('../middleware/upload')
 // router.post("/remove", product.remove);
 
 router.route('/')
-  .get(product.isLogin, product.findAll)
+  .get(product.findAll) //product.isLogin,
   .post(upload, product.saveData)
-  .patch(product.upData)
+  .patch(upload, product.upData)
   .delete(product.remove)
 router.get("/findOne", product.findOne);
 router.post("/search", product.search);

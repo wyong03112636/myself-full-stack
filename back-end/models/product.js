@@ -5,10 +5,19 @@ const {
 const save = (data) => {
   return new product(data).save();
 }
-const findAll = () => {
-  return product.find({}).sort({
+const findAll = async ({
+  start,
+  count
+}) => {
+  let list = await product.find({}).sort({
     _id: -1
-  });
+  }).limit(~~count).skip(~~start);
+  let total = await product.find({}).count();
+
+  return {
+    list,
+    total
+  }
 }
 const upData = async (data) => {
   return await product.findByIdAndUpdate(data.id, data)
