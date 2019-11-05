@@ -3,12 +3,11 @@
       <!-- Form Elements -->
       <div class="panel panel-default">
           <div class="panel-heading">
-              添加产品
           </div>
           <div class="panel-body">
               <div class="row">
                   <div class="col-md-12">
-                      <h3>产品信息：</h3>
+                      <h3>添加产品信息：</h3>
                       <form role="form" method="POST" id="product-info" action="/api/product" enctype="multipart/form-data" >
                         <div class="form-group">
                             <label>产品图片</label>

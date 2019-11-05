@@ -7,7 +7,6 @@ import productUpDataView from "../views/product.update.art";
 const _ = require("lodash");
 
 const count = 5;
-// const currentPage = 1;
 
 function addHandle(res) {
   $("#btn-add").on("click", () => {
@@ -37,12 +36,12 @@ async function removeHandle(req, res, obj) {
     res.go(`/product_list/${req.params.page || 1}?r=${new Date().getTime()}`);
   }
 }
+
 async function searchHandle(res, keywords) {
   if (keywords === "") {
     res.go("/product");
     return;
   }
-
   const result = await http.upData({
     url: "/api/product/search",
     type: "POST",
@@ -91,7 +90,6 @@ export const list = async (req, res, next) => {
     res.go(`/product_list/${currentPage - 1}`);
     return;
   }
-
   const pageCount = _.range(1, Math.ceil(result.message.total / count) + 1);
   if (result.msg) {
     const {

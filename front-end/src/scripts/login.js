@@ -1,25 +1,32 @@
-const loginModel = require('./models/request');
-class Login {
-    constructor() {
-        this.bindEvent()
-    }
-    bindEvent() {
-        $('#login').on('click', this.login.bind(this))
-    }
-    async login() {
-        let data = $('.userinfo').serialize();
-        let result = await loginModel.get({
-            url: 'api/users/login',
-            type: 'POST',
-            data,
-        })
+/* eslint-disable class-methods-use-this */
+const loginModel = require("./models/request");
 
-        if (result.msg) {
-            location.href = '../index.html';
-        }
-        if (!result.msg) {
-            alert(result.message.message);
-        }
+class Login {
+  constructor() {
+    this.bindEvent();
+  }
+
+  bindEvent() {
+    $("#login").on("click", this.login.bind(this));
+  }
+
+  async login() {
+    const data = $(".userinfo").serialize();
+    const result = await loginModel.get({
+      url: "api/users/login",
+      type: "POST",
+      data,
+    });
+
+    if (result.msg) {
+      // eslint-disable-next-line no-restricted-globals
+      location.href = "../index.html";
     }
+    if (!result.msg) {
+      // eslint-disable-next-line no-alert
+      alert(result.message.message);
+    }
+  }
 }
-new Login()
+// eslint-disable-next-line no-new
+new Login();
