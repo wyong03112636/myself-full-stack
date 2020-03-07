@@ -8,7 +8,7 @@ const upload = require('../middleware/upload')
 // router.post("/remove", product.remove);
 
 router.route('/')
-  .get(product.findAll) //product.isLogin,
+  .get(product.isLogin, product.findAll) //
   .post(upload, product.saveData)
   .patch(upload, product.upData)
   .delete(product.remove)
