@@ -19,6 +19,9 @@ router.route("/product_add", add);
 router.route("/product_update", updata);
 router.route("/form", form);
 router.route("/product_list/:page", list);
+router.route("*", (req, res, next) => {
+  res.redirect("/home");
+});
 
 router.use((req) => {
   const url = req.url.slice(1).split("/")[0].split("?")[0].split("_")[0];

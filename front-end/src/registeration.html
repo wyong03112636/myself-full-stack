@@ -11,7 +11,7 @@
     <link href="./assets/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='./assets/css.css' rel='stylesheet' type='text/css' />
-
+    <link rel="stylesheet" href="./styles/register.css">
 </head>
 <body>
     <div class="container">
@@ -35,23 +35,26 @@
                                 <form role="form" id="registerinfo"><br/>
                                         
                                      <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+                                            <span class="input-group-addon"></span>
                                             <input type="text" class="form-control" placeholder="Desired Username" name="username" />
                                         </div>
                                       
                                       <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control" placeholder="Enter Password" name="password"/>
+                                            <span class="input-group-addon"></span>
+                                            <input type="password" class="form-control" placeholder="Enter Password" name="password" id="pwd"/>
                                         </div>
                                      <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control" placeholder="Retype Password" name="retype"/>
+                                            <span class="input-group-addon"></span>
+                                            <input type="password" class="form-control" placeholder="Retype Password" name="retype" id="samepwd"/>
                                         </div>
-                                     
+                                        <div>
+                                            <p id="tip" ><i class="fontf">&#xe604;</i><span> 两次输入不一致</span></p>
+                                        </div>
                                      <a href="javascript:void(0)" class="btn btn-success " id="register">Register Me</a>
                                     <hr />
                                     Already Registered ?  <a href="login.html" >Login here</a>
-                                    </form>
+                                   
+                                </form>
                             </div>
                            
                         </div>

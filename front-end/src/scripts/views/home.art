@@ -1,5 +1,5 @@
 <pre>
-    信息管理系统：
+    Information management system:
     <div>
         sme-router + jQuery + art-template + mongoose + bcrypt + cookie-session + token非对称加密 + store
     </div>

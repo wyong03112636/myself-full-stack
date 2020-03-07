@@ -5,3 +5,25 @@
 #pagination{
     float: right;
 }
+@font-face {
+    font-family: 'iconfont';  /* project id 1435208 */
+    src: url('//at.alicdn.com/t/font_1435208_av28asjny3a.eot');
+    src: url('//at.alicdn.com/t/font_1435208_av28asjny3a.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1435208_av28asjny3a.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1435208_av28asjny3a.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1435208_av28asjny3a.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1435208_av28asjny3a.svg#iconfont') format('svg');
+  }
+.fonty{
+    font-family: iconfont;
+    font-size: 20px; 
+}
+#zzz{
+    position: relative;
+    padding-right: 0;
+}
+#ssss{
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}

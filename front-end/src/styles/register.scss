@@ -1,0 +1,20 @@
+#tip{
+  display: none;
+  padding-top: 0;
+  color: red;
+  font-size: 14px;
+}
+@font-face {
+  font-family: 'iconfont';  /* project id 1435208 */
+  src: url('//at.alicdn.com/t/font_1435208_lzi5gaxwxnq.eot');
+  src: url('//at.alicdn.com/t/font_1435208_lzi5gaxwxnq.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1435208_lzi5gaxwxnq.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1435208_lzi5gaxwxnq.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1435208_lzi5gaxwxnq.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1435208_lzi5gaxwxnq.svg#iconfont') format('svg');
+}
+.fontf{
+  font-family: iconfont;
+  font-size: 14px;
+  color: red;
+}

@@ -1,12 +1,13 @@
 <div class="panel-heading">
     {{if flag}}
-    <div class="panel-heading">
-        <button type="button" class="btn btn-success" id="btn-add">+ 添加</button>
+    <div class="panel-heading" id="zzz" >
+        <button type="button" class="btn btn-success" id="btn-add">+ Add</button>
             <input type="text" id="search" class="form-control" style="width: 200px; float: right;">
+            <span class="fonty" id="ssss">&#xe624;</span>
       </div>
       {{else}}
       <div class="panel-heading">
-        <button type="button" class="btn btn-success" id="go-back">- 返回</button>
+        <button type="button" class="btn btn-success" id="go-back">- Back</button>
       </div>
       {{/if}}
 </div>
@@ -15,20 +16,20 @@
         {{ if list.length === 0}}
        <table>
            <th>
-               <tr>暂无数据.</tr>
+               <tr>No data.</tr>
            </th>
        </table>
        {{else}}
        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
            <thead>
                <tr class="odd gradeX">
-                <th>产品编号</th>
-                <th>产品图片</th>
-                <th>产品名称</th>
-                <th>产品描述</th>
-                <th>产品价格</th>
-                <th>添加时间</th>
-                <th>操作</th>
+                <th>ID</th>
+                <th>Img</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Add time</th>
+                <th>Operation</th>
                </tr>
            </thead>
            <tbody>
@@ -41,8 +42,8 @@
                 <td>￥{{$value.productprice}}</td>
                 <td>{{$value.createTime}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary" data-id="{{$value._id}}" id="pro-update">修改</button>
-                  <button type="button" class="btn btn-danger" data-id="{{$value._id}}" data-img="{{$value.productimg}}" id="pro-remove">删除</button>
+                  <button type="button" class="btn btn-primary" data-id="{{$value._id}}" id="pro-update">Update</button>
+                  <button type="button" class="btn btn-danger" data-id="{{$value._id}}" data-img="{{$value.productimg}}" id="pro-remove">Delete</button>
                 </td>
             </tr>
             {{/each}}
